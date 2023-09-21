@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserApi.Data;
+using UserApi.Repositories.UserRepository;
 
 namespace UserApi.Services.Application
 {
@@ -7,8 +8,8 @@ namespace UserApi.Services.Application
     {
         public static IServiceCollection AddScopedServices(this IServiceCollection services)
         {
-           
 
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 
@@ -24,8 +25,9 @@ namespace UserApi.Services.Application
 
         public static IServiceCollection AddAutoMapperServices(this IServiceCollection services)
         {
-          
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }
+
     }
 }
